@@ -22,9 +22,9 @@ function App() {
   const getProperties = async () => {
     setLoading(true)
     try {
-      let { error, data } = await getPropertiesFromAPI(page)
+      const { error, data } = await getPropertiesFromAPI(page)
       if (!error) {
-        let { properties, totalPages, totalItems } = data
+        const { properties, totalPages, totalItems } = data
         setProperties(properties)
         setTotalPages(totalPages)
         setTotalItems(totalItems)
@@ -33,6 +33,7 @@ function App() {
       }
       setLoading(false)
     } catch (error) {
+      console.log(error)
       toast.error("An error occurred, please try again later")
       setLoading(false)
     }
@@ -82,7 +83,7 @@ function App() {
 }
 
 
-const Button = (props: { onClick: () => any, title: string }) => (
+const Button = (props: { onClick: () => void, title: string }) => (
   <button className='bg-ACCENT font-bold min-w-6 p-0.5 px-1 rounded-md m-2' onClick={props.onClick}>{props.title}</button>
 )
 

@@ -1,9 +1,9 @@
 import config from "../config";
 export const getPropertiesFromAPI = async (page: number, limit: number = 10) => {
     try {
-        let res = await fetch(`${config.baseUrl}/api/properties/?page=${page}&limit=${limit}`);
+        const res = await fetch(`${config.baseUrl}/api/properties/?page=${page}&limit=${limit}`);
         if (res.status == 200) {
-            let { data: properties, totalPages, totalItems } = await res.json()
+            const { data: properties, totalPages, totalItems } = await res.json()
             return ({ error: false, data: { totalPages, totalItems, properties } })
         } else {
             return ({ error: true, data: { totalPages: 0, totalItems: 0, properties: [], } })
